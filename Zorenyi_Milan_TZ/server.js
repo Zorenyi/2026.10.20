@@ -36,10 +36,12 @@ app.get("/konyvek/elerheto", (req, res) => {
 
 app.get("/mufajok/statisztika", (req, res) => {
     const sql = `
-        SELECT cim, kiadasi_ev, oldalszam
-        FROM konyvek
-        WHERE oldalszam > 400
-        ORDER BY oldalszam DESC
+        SELECT m.nev AS mufaj,
+        COUNT(k.id) AS konyvek_szama,
+        ROUND(AVG(k.oldalszam)) AS atlagos_oldalszam
+        FROM mufajok m
+        LEFT JOIN konyvek k ON m.id = k.mufaj_id
+        GROUP BY m.id, m.nev
     `;
 
     db.query(sql, (err, eredmeny) => {
