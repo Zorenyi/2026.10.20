@@ -1,0 +1,7 @@
+CREATE DATABASE konyvtar_db CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+
+CREATE TABLE mufajok (id INT PRIMARY KEY AUTO_INCREMENT, nev TEXT(50) NOT NULL);
+
+CREATE TABLE konyvek (id INT PRIMARY KEY AUTO_INCREMENT, mufaj_id INT, cim TEXT(150) NOT NULL, kiadasi_ev INT NOT NULL, oldalszam INT NOT NULL, kolcsonozheto BOOLEAN NOT NULL, FOREIGN KEY (mufaj_id) REFERENCES mufajok(id));
+
+INSERT INTO mufajok (id, nev) VALUES (1, 'Sci-Fi'), (2, 'Történelem'), (3, 'Krimi'); INSERT INTO konyvek (id, mufaj_id, cim, kiadasi_ev, oldalszam, kolcsonozheto) VALUES (1, 1, 'Dűne Krónikái', 1965, 680, 1), (2, 1, 'Alapítvány és Birodalom', 1952, 280, 1), (3, 1, 'Neurománc cyber trilógia', 1984, 320, 0), (4, 2, 'A középkor alkonya', 1919, 410, 1), (5, 2, 'Róma tündöklése és bukása', 1998, 540, 1), (6, 2, 'Mohácsi csata oknyomozása', 2010, 190, 0), (7, 3, 'Tíz kicsi néger rejtélye', 1939, 220, 1), (8, 3, 'A Da Vinci-kód', 2003, 590, 1), (9, 3, 'A sátán kutyája klasszikus', 1902, 180, 0), (10, 1, 'Csillagközi invázió harcosai', 1959, 260, 1);
