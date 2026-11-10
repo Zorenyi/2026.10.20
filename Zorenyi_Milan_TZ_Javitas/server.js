@@ -194,5 +194,5 @@ app.delete("/mufajok/:id", (req, res) => {
 });
 
 app.listen(2005, () => {
-    console.log("Szerver fut");
+    console.log("Szerver fut a 2005-os porton");
 });
